@@ -1,0 +1,5 @@
+save to custom location
+
+have variety in quality ( not just best quality )
+
+have main be in a while loop for continuous chain downloading

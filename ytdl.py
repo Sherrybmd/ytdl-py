@@ -4,11 +4,12 @@ import os
 class ytdl:
     def __init__(self):
         self.linuxTerminal = "gnome-terminal -- bash -c '"
+        self.linuxTerminalJank = "; exec bash'"
         self.windowsTerminal = None
         self.browserName = "firefox"
-        self.link = None
+        self.link = ""
 
-        self.ytdlp_command = "yt-dlp --cookies-from-browser " + self.browserName
+        self.ytdlp_command = "yt-dlp --cookies-from-browser " + self.browserName + " "
         self.extras = ""
         self.combined_command = ""
 
@@ -17,6 +18,7 @@ class ytdl:
 
     def downVideo(self):
         self.extras += self.bestQualityVideo
+        self.download()
 
     def downSectionOfVideo(self):
         first = input("enter starting point's time(xx:xx)")
@@ -24,14 +26,15 @@ class ytdl:
         # imagine theres error handling here
         section = first + "-" + last + " "
         self.extras += "--download-sections *" + section
+        self.download()
 
     def downAudio(self):
         self.extras += (
             "-f bestaudio --extract-audio --audio-format mp3 --audio-quality 320k "
         )
+        self.download()
 
     def setLink(self, link):
-        link = input(("enter the youtube video's link!"))
         # imagine theres some link validation here
         self.link = link
 
@@ -39,7 +42,16 @@ class ytdl:
         pass
 
     def construct_final_command(self):
-        self.combined_command += self.linuxTerminal + self.ytdlp_command + self.extras
+        # for linux
+        self.combined_command += (
+            self.linuxTerminal
+            + self.ytdlp_command
+            + self.link
+            + self.extras
+            + self.linuxTerminalJank
+        )
+
+        # for windows (WIP)
 
     def download(self):
         self.construct_final_command()
