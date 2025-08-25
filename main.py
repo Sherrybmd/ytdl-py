@@ -29,14 +29,13 @@ def main():
     # get browsers name
 
     session = ytdl()
+
     # get link
     link = input("enter the link for video\n>")
-
     if link == "q":
         return -1
 
     # imagine validation of link here
-
     session.setLink(link)
 
     storeAsk = ask()

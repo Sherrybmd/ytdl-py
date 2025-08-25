@@ -3,6 +3,8 @@ import os
 
 class ytdl:
     def __init__(self):
+        self.folder = "ytdl-downloads"
+
         self.linuxTerminal = "gnome-terminal -- bash -c '"
         self.linuxTerminalJank = "; exec bash'"
         self.windowsTerminal = None
@@ -43,7 +45,7 @@ class ytdl:
 
     def construct_final_command(self):
         # for linux
-        self.combined_command += (
+        self.combined_command = (
             self.linuxTerminal
             + self.ytdlp_command
             + self.link
@@ -55,5 +57,13 @@ class ytdl:
 
     def download(self):
         # opens the terminal, to download using yt-dlp
+
         self.construct_final_command()
+        os.chdir("ytdl-downloads")
         os.system(self.combined_command)
+
+    def makeFolder(self):
+        if os.path.exists("./ytdl-downloads") is False:
+            os.system("mkdir ytdl-downloads")
+        else:
+            os.chdir("ytdl-downloads")
