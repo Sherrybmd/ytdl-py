@@ -15,7 +15,7 @@ class ytdl:
         self.extras = ""
         self.combined_command = ""
 
-        # now special little commands
+        # special little commands
         self.bestQualityVideo = "-S res,ext:mp4:m4a --recode mp4 "
 
     def downVideo(self):
@@ -54,16 +54,21 @@ class ytdl:
         )
 
         # for windows (WIP)
+        #
+        #
 
     def download(self):
         # opens the terminal, to download using yt-dlp
 
         self.construct_final_command()
-        os.chdir("ytdl-downloads")
         os.system(self.combined_command)
 
     def makeFolder(self):
-        if os.path.exists("./ytdl-downloads") is False:
+        if (
+            os.path.exists("./ytdl-downloads") is False
+            and os.path.exists("../ytdl-downloads") is False
+        ):
             os.system("mkdir ytdl-downloads")
-        else:
-            os.chdir("ytdl-downloads")
+
+    def changeToFolder(self):
+        os.chdir("ytdl-downloads")

@@ -1,4 +1,4 @@
-from os import system
+import os
 from ytdl import ytdl
 # it's better to give browser name to constructor
 
@@ -51,8 +51,15 @@ def main():
     elif storeAsk == 3:
         session.downSectionOfVideo()
 
-    system("clear")
+    os.system("clear")
     main()
 
+
+# band aid fix
+if os.path.exists("./ytdl-downloads/") is False:
+    os.system("mkdir ytdl-downloads")
+    os.chdir("ytdl-downloads")
+else:
+    os.chdir("ytdl-downloads")
 
 main()
