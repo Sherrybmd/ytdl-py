@@ -26,7 +26,7 @@ class ytdl:
         # imagine theres error handling here
         section = first + "-" + last + " "
         self.extras += "--download-sections *" + section
-        self.download()
+        self.downVideo()
 
     def downAudio(self):
         self.extras += (
@@ -36,7 +36,7 @@ class ytdl:
 
     def setLink(self, link):
         # imagine theres some link validation here
-        self.link = link
+        self.link = link + " "
 
     def getBrowserName(self):
         pass
@@ -54,6 +54,6 @@ class ytdl:
         # for windows (WIP)
 
     def download(self):
+        # opens the terminal, to download using yt-dlp
         self.construct_final_command()
-        print(self.combined_command)  # temporary surely
         os.system(self.combined_command)

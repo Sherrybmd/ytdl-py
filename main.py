@@ -1,3 +1,4 @@
+from os import system
 from ytdl import ytdl
 # it's better to give browser name to constructor
 
@@ -29,7 +30,11 @@ def main():
 
     session = ytdl()
     # get link
-    link = input("enter the link for video")
+    link = input("enter the link for video\n>")
+
+    if link == "q":
+        return -1
+
     # imagine validation of link here
 
     session.setLink(link)
@@ -46,6 +51,9 @@ def main():
 
     elif storeAsk == 3:
         session.downSectionOfVideo()
+
+    system("clear")
+    main()
 
 
 main()
