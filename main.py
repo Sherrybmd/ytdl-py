@@ -28,7 +28,9 @@ def main():
     print("q to quit when you're entering the link!\n")
     # get browsers name
 
+    # vvv remove after uncommenting main lines below
     session = windowsytdl()
+    # vvv main lines
     """
     if os.name == "posix":  # linux check
         session = linuxytdl()
@@ -64,7 +66,7 @@ def main():
     main()
 
 
-# band aid fix
+# band aid fix for folder management, big room for improving
 if os.path.exists("./ytdl-downloads/") is False:
     os.system("mkdir ytdl-downloads")
     os.chdir("ytdl-downloads")

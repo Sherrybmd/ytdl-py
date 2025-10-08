@@ -1,7 +1,13 @@
 import os
 
 
-# todo: add update ytdlp command, add different quality of video command, add error handling in downSectionOfVideo
+# todo: add update/install and add to path for ytdlp command,
+# add different quality of video command,
+# add error handling in downSectionOfVideo,
+# add installation and adding of FFMPEG in path,
+# test on windows with none of the above installed,
+
+
 class linuxytdl:
     def __init__(self):
         self.folder = "ytdl-downloads"
@@ -75,12 +81,10 @@ class windowsytdl(linuxytdl):
     def __init__(self):
         super().__init__()
         del self.linuxTerminal, self.linuxTerminalJank
-        #  vvv  google this for the love of god vvv
-        self.windowsTerminal = "terminalOPEN "
-        self.windowsTerminalJank = "ENDCOMMAND "
-        # ^^^ end of useless strings ^^^
 
-    # ^^^ end of useless comments ^^^
+        # /c has been suggested for automatic cleanup, however /k is good for debugging as it keeps window open
+        self.windowsTerminal = "cmd /k "
+        self.windowsTerminalJank = ""
 
     def construct_final_command(self):
         self.combined_command = (
@@ -98,3 +102,17 @@ class windowsytdl(linuxytdl):
     def download(self):
         self.construct_final_command()
         print(self.combined_command)
+
+
+"""
+window command cmd open:  
+
+For me this seems to work
+os.system("cmd /k {command}")
+
+With /k cmd executes and then remain open
+With /c executes and close
+
+To open a new command window and then execute the command
+os.system("start cmd /k {command}")
+"""
