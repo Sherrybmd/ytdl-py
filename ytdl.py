@@ -1,7 +1,8 @@
 import os
 
 
-class ytdl:
+# todo: add update ytdlp command, add different quality of video command, add error handling in downSectionOfVideo
+class linuxytdl:
     def __init__(self):
         self.folder = "ytdl-downloads"
 
@@ -37,7 +38,7 @@ class ytdl:
         self.download()
 
     def setLink(self, link):
-        # imagine theres some link validation here
+        # add space too otherwise commands stick together and return error
         self.link = link + " "
 
     def getBrowserName(self):
@@ -52,10 +53,6 @@ class ytdl:
             + self.extras
             + self.linuxTerminalJank
         )
-
-        # for windows (WIP)
-        #
-        #
 
     def download(self):
         # opens the terminal, to download using yt-dlp
@@ -72,3 +69,32 @@ class ytdl:
 
     def changeToFolder(self):
         os.chdir("ytdl-downloads")
+
+
+class windowsytdl(linuxytdl):
+    def __init__(self):
+        super().__init__()
+        del self.linuxTerminal, self.linuxTerminalJank
+        #  vvv  google this for the love of god vvv
+        self.windowsTerminal = "terminalOPEN "
+        self.windowsTerminalJank = "ENDCOMMAND "
+        # ^^^ end of useless strings ^^^
+
+    # ^^^ end of useless comments ^^^
+
+    def construct_final_command(self):
+        self.combined_command = (
+            self.windowsTerminal
+            + self.ytdlp_command
+            + self.link
+            + self.extras
+            + self.windowsTerminalJank
+        )
+        # return super().construct_final_command()
+        # ^^^ why did my LSP auto enter return? it returns an object,
+        # who does the object represent? parent?
+
+    # vvv to avoid shell error due to invalid commands, must be removed after fixing windows command
+    def download(self):
+        self.construct_final_command()
+        print(self.combined_command)

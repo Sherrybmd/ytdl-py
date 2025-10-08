@@ -1,5 +1,5 @@
 import os
-from ytdl import ytdl
+from ytdl import linuxytdl, windowsytdl
 # it's better to give browser name to constructor
 
 
@@ -28,7 +28,16 @@ def main():
     print("q to quit when you're entering the link!\n")
     # get browsers name
 
-    session = ytdl()
+    session = windowsytdl()
+    """
+    if os.name == "posix":  # linux check
+        session = linuxytdl()
+    elif os.name == "nt":  # windows check
+        session = windowsytdl()
+    else:
+        print("os not supported")
+        return 404
+    """
 
     # get link
     link = input("enter the link for video\n>")
@@ -51,7 +60,7 @@ def main():
     elif storeAsk == 3:
         session.downSectionOfVideo()
 
-    os.system("clear")
+    #    os.system("clear")
     main()
 
 
