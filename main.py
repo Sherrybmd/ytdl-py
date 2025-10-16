@@ -28,10 +28,6 @@ def main():
     print("q to quit when you're entering the link!\n")
     # get browsers name
 
-    # vvv remove after uncommenting main lines below
-    session = windowsytdl()
-    # vvv main lines
-    """
     if os.name == "posix":  # linux check
         session = linuxytdl()
     elif os.name == "nt":  # windows check
@@ -39,7 +35,6 @@ def main():
     else:
         print("os not supported")
         return 404
-    """
 
     # get link
     link = input("enter the link for video\n>")

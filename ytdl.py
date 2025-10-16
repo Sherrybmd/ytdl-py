@@ -6,6 +6,9 @@ import os
 # add error handling in downSectionOfVideo,
 # add installation and adding of FFMPEG in path,
 # test on windows with none of the above installed,
+# if chrome is being used, avoid extracting cookies
+#
+# seems like exec bash keeps terminals that spawn open, removing it leads to them closing after finishing task.
 
 
 class linuxytdl:
@@ -13,8 +16,7 @@ class linuxytdl:
         self.folder = "ytdl-downloads"
 
         self.linuxTerminal = "gnome-terminal -- bash -c '"
-        self.linuxTerminalJank = "; exec bash'"
-        self.windowsTerminal = None
+        self.linuxTerminalJank = "'"
         self.browserName = "firefox"
         self.link = ""
 
@@ -101,7 +103,7 @@ class windowsytdl(linuxytdl):
     # vvv to avoid shell error due to invalid commands, must be removed after fixing windows command
     def download(self):
         self.construct_final_command()
-        print(self.combined_command)
+        os.system(self.combined_command)
 
 
 """
@@ -115,4 +117,8 @@ With /c executes and close
 
 To open a new command window and then execute the command
 os.system("start cmd /k {command}")
+
+but it's not very useful if your command is a complex one with spaces or other control characters. For that I use:
+subprocess.run(["start", "/wait", "cmd", "/K", command, "arg /?\\^"], shell=True)
+
 """
