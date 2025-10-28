@@ -38,11 +38,11 @@ class linuxytdl:
         )
 
         if choice == "480" or "1":  # 480
-            return "-f bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4] "
+            return '-f "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]" '
         elif choice == "720" or "2":  # 720
-            return "-f bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4] "
+            return '-f "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]" '
         elif choice == "1080" or "3":  # 1080
-            return "-f bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4] "
+            return '-f "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]" '
         else:
             # choice = "best"
             return "-S res,ext:mp4:m4a --recode mp4 "
@@ -77,7 +77,6 @@ class linuxytdl:
             + self.link
             + self.linuxTerminalJank
         )
-        print(self.combined_command)
 
     def download(self):
         # opens the terminal, to download using yt-dlp
