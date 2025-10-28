@@ -1,5 +1,3 @@
-add auto update on startup
-
 have variety in quality ( not just best quality )
 
 save to custom location
