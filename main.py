@@ -69,7 +69,7 @@ def main(browsername):
     elif storeAsk == 4:
         checkForUpdate(session)
 
-    # os.system("clear")
+    os.system("clear")
     main(browsername)
 
 

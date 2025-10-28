@@ -18,7 +18,7 @@ class linuxytdl:
 
         self.linuxTerminal = "gnome-terminal -- bash -c '"
         self.linuxTerminalJank = "'"
-        self.browserName = "browsername"
+        self.browserName = browsername
         self.link = ""
 
         self.ytdlp_command = "yt-dlp --cookies-from-browser " + self.browserName + " "
