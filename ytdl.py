@@ -26,11 +26,26 @@ class linuxytdl:
         self.combined_command = ""
 
         # special little commands
-        self.bestQualityVideo = "-S res,ext:mp4:m4a --recode mp4 "
+        # self.bestQualityVideo = "-S res,ext:mp4:m4a --recode mp4 "
 
-    def downVideo(self):
-        self.extras += self.bestQualityVideo
+    def downVideo(self, quality):
+        self.extras += quality
         self.download()
+
+    def setVidQuality(self):
+        choice = input(
+            "enter video quality (enter none for best) \n1_480\n2_720\n3_1080"
+        )
+
+        if choice == "480" or "1":  # 480
+            return "-f bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4] "
+        elif choice == "720" or "2":  # 720
+            return "-f bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4] "
+        elif choice == "1080" or "3":  # 1080
+            return "-f bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4] "
+        else:
+            # choice = "best"
+            return "-S res,ext:mp4:m4a --recode mp4 "
 
     def downSectionOfVideo(self):
         first = input("enter starting point's time(xx:xx)")
@@ -38,7 +53,7 @@ class linuxytdl:
         # imagine theres error handling here
         section = first + "-" + last + " "
         self.extras += "--download-sections *" + section
-        self.downVideo()
+        self.downVideo(self.setVidQuality())
 
     def downAudio(self):
         self.extras += (
@@ -58,10 +73,11 @@ class linuxytdl:
         self.combined_command = (
             self.linuxTerminal
             + self.ytdlp_command
-            + self.link
             + self.extras
+            + self.link
             + self.linuxTerminalJank
         )
+        print(self.combined_command)
 
     def download(self):
         # opens the terminal, to download using yt-dlp

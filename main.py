@@ -6,7 +6,7 @@ from ytdl import linuxytdl, windowsytdl, checkForUpdate
 def ask():
     print("choose operation")
     choice = input(
-        "q to quit\n1_download best quality of video\n2_download best quality of audio\n3_download section of video\n4_update (if download fails)\n>"
+        "q to quit\n1_download your choice of quality video\n2_download best quality of audio\n3_download section of video\n4_update (if download fails)\n>"
     )
     if choice == "q":
         return -1
@@ -50,7 +50,7 @@ def main(browsername):
         if link == "q":
             return -1
         session.setLink(link)
-        session.downVideo()
+        session.downVideo(session.setVidQuality())
 
     elif storeAsk == 2:
         link = input("enter the link for video\n>")
@@ -69,7 +69,7 @@ def main(browsername):
     elif storeAsk == 4:
         checkForUpdate(session)
 
-    os.system("clear")
+    # os.system("clear")
     main(browsername)
 
 
