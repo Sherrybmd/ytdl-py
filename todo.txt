@@ -1,7 +1,6 @@
-THE SPACES ARE FUCKING EVERYWHERE, NO ORDER TO BE SEEN
-
-save to custom location
+add auto update on startup
 
 have variety in quality ( not just best quality )
 
-have main be in a while loop for continuous chain downloading
+save to custom location
+

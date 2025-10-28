@@ -1,3 +1,4 @@
+import time
 import os
 
 
@@ -12,12 +13,12 @@ import os
 
 
 class linuxytdl:
-    def __init__(self):
+    def __init__(self, browsername):
         self.folder = "ytdl-downloads"
 
         self.linuxTerminal = "gnome-terminal -- bash -c '"
         self.linuxTerminalJank = "'"
-        self.browserName = "firefox"
+        self.browserName = "browsername"
         self.link = ""
 
         self.ytdlp_command = "yt-dlp --cookies-from-browser " + self.browserName + " "
@@ -80,8 +81,8 @@ class linuxytdl:
 
 
 class windowsytdl(linuxytdl):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, browsername):
+        super().__init__(browsername)
         del self.linuxTerminal, self.linuxTerminalJank
 
         # /c has been suggested for automatic cleanup, however /k is good for debugging as it keeps window open
@@ -104,6 +105,24 @@ class windowsytdl(linuxytdl):
     def download(self):
         self.construct_final_command()
         os.system(self.combined_command)
+
+
+def checkForUpdate(session):
+    print("checking for update", end="")
+    for i in range(3):
+        time.sleep(1)
+        print(".", end="")
+    print()
+
+    if os.name == "posix":
+        os.system(
+            session.linuxTerminal + " pipx upgrade yt-dlp" + session.linuxTerminalJank
+        )
+    elif os.name == "nt":
+        # unclear if it does function correctly
+        os.system(session.windowsTerminal + " yt-dlp -U" + session.windowsTerminalJank)
+    else:
+        print("os not supported, update failed")
 
 
 """
