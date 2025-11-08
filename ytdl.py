@@ -2,12 +2,10 @@ import time
 import os
 
 
-# todo: add update/install and add to path for ytdlp command,
-# add different quality of video command,
-# add error handling in downSectionOfVideo,
 # add installation and adding of FFMPEG in path,
 # test on windows with none of the above installed,
 # if chrome is being used, avoid extracting cookies
+# add custom name output
 #
 # seems like exec bash keeps terminals that spawn open, removing it leads to them closing after finishing task.
 
@@ -37,11 +35,11 @@ class linuxytdl:
             "enter video quality (enter none for best) \n1_480\n2_720\n3_1080"
         )
 
-        if choice == "480" or "1":  # 480
+        if choice == "480" or choice == "1":  # 480
             return '-f "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]" '
-        elif choice == "720" or "2":  # 720
+        elif choice == "720" or choice == "2":  # 720
             return '-f "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]" '
-        elif choice == "1080" or "3":  # 1080
+        elif choice == "1080" or choice == "3":  # 1080
             return '-f "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]" '
         else:
             # choice = "best"
@@ -53,7 +51,8 @@ class linuxytdl:
         # imagine theres error handling here
         section = first + "-" + last + " "
         self.extras += "--download-sections *" + section
-        self.downVideo(self.setVidQuality())
+        quality = self.setVidQuality()
+        self.downVideo(quality)
 
     def downAudio(self):
         self.extras += (

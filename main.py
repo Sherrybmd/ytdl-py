@@ -24,7 +24,7 @@ def ask():
         return 4
     else:
         print("bad input")
-        ask()
+        return ask()
 
 
 def main(browsername):
@@ -50,7 +50,8 @@ def main(browsername):
         if link == "q":
             return -1
         session.setLink(link)
-        session.downVideo(session.setVidQuality())
+        quality = session.setVidQuality()
+        session.downVideo(quality)
 
     elif storeAsk == 2:
         link = input("enter the link for video\n>")
