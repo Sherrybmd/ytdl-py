@@ -2,8 +2,7 @@ import time
 import os
 
 
-# make sure self.extras is empty for each download
-# (or reset it before each download) so flags don't accumulate across runs.
+# make sure self.extras is empty for each download, theres no such bug, chatgpt is retarded
 #
 # add installation and adding of FFMPEG in path,
 # test on windows with none of the above installed,

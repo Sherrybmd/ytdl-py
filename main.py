@@ -71,6 +71,7 @@ def main(browsername):
         checkForUpdate(session)
 
     # os.system("clear")
+    print(session.extras)
     main(browsername)
 
 
