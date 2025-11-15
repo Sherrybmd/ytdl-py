@@ -19,7 +19,7 @@ class linuxytdl:
         self.folder = "ytdl-downloads"
 
         self.linuxTerminal = "gnome-terminal -- bash -c '"
-        self.linuxTerminalJank = "'"
+        self.linuxTerminalJank = ";exec bash'"
         self.browserName = browsername
         self.link = ""
 
@@ -62,7 +62,7 @@ class linuxytdl:
         self.extras += (
             "-f bestaudio --extract-audio --audio-format mp3 --audio-quality 320k "
         )
-        self.getOutputName(name, "mp3")
+        self.getOutputName(name, "")
         self.download()
 
     def setLink(self, link):
@@ -70,7 +70,10 @@ class linuxytdl:
         self.link = link + " "
 
     def getOutputName(self, name, format):
-        self.extras += f"-o {name}.{format} "
+        if format == "":
+            self.extras += f"-o {name} "
+        else:
+            self.extras += f"-o {name}.{format} "
 
     def construct_final_command(self):
         # for linux
