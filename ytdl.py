@@ -1,6 +1,7 @@
 import time
 import os
 
+# in downAudio() we must have alternative formats to mp3, if it doesnt exist we encounter error
 # need to store all command and add spaces where they are required at the end
 # instead of manually changing in each function which is a mess
 
