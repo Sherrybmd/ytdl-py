@@ -1,6 +1,8 @@
 import time
 import os
 
+# need to store all command and add spaces where they are required at the end
+# instead of manually changing in each function which is a mess
 
 # make sure self.extras is empty for each download, theres no such bug, chatgpt is retarded
 #
@@ -25,11 +27,11 @@ class linuxytdl:
         self.extras = ""
         self.combined_command = ""
 
-        # special little commands
         # self.bestQualityVideo = "-S res,ext:mp4:m4a --recode mp4 "
 
-    def downVideo(self, quality):
+    def downVideo(self, quality, name):
         self.extras += quality
+        self.getOutputName(name, "mp4")
         self.download()
 
     def setVidQuality(self):
@@ -47,27 +49,28 @@ class linuxytdl:
             # choice = "best"
             return "-S res,ext:mp4:m4a --recode mp4 "
 
-    def downSectionOfVideo(self):
+    def downSectionOfVideo(self, name):
         first = input("enter starting point's time(xx:xx)")
         last = input("enter end point's time(xx:xx)")
-        # imagine theres error handling here
-        section = first + "-" + last + " "
-        self.extras += "--download-sections *" + section
-        quality = self.setVidQuality()
-        self.downVideo(quality)
+        section = first + "-" + last
 
-    def downAudio(self):
+        self.extras += "--download-sections *" + section + " "
+        quality = self.setVidQuality()
+        self.downVideo(quality, name)
+
+    def downAudio(self, name):
         self.extras += (
             "-f bestaudio --extract-audio --audio-format mp3 --audio-quality 320k "
         )
+        self.getOutputName(name, "mp3")
         self.download()
 
     def setLink(self, link):
         # add space too otherwise commands stick together and return error
         self.link = link + " "
 
-    def getBrowserName(self):
-        pass
+    def getOutputName(self, name, format):
+        self.extras += f"-o {name}.{format}"
 
     def construct_final_command(self):
         # for linux

@@ -45,30 +45,31 @@ def main(browsername):
     elif storeAsk == "q":
         return -1
 
-    elif storeAsk == 1:
+    elif storeAsk == 4:
+        checkForUpdate(session)
+
+    name = input("enter files name to save(no need for format):\n>")
+    if storeAsk == 1:
         link = input("enter the link for video\n>")
         if link == "q":
             return -1
         session.setLink(link)
         quality = session.setVidQuality()
-        session.downVideo(quality)
+        session.downVideo(quality, name)
 
     elif storeAsk == 2:
         link = input("enter the link for video\n>")
         if link == "q":
             return -1
         session.setLink(link)
-        session.downAudio()
+        session.downAudio(name)
 
     elif storeAsk == 3:
         link = input("enter the link for video\n>")
         if link == "q":
             return -1
         session.setLink(link)
-        session.downSectionOfVideo()
-
-    elif storeAsk == 4:
-        checkForUpdate(session)
+        session.downSectionOfVideo(name)
 
     # os.system("clear")
     print(session.extras)
