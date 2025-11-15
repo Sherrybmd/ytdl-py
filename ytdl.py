@@ -70,7 +70,7 @@ class linuxytdl:
         self.link = link + " "
 
     def getOutputName(self, name, format):
-        self.extras += f"-o {name}.{format}"
+        self.extras += f"-o {name}.{format} "
 
     def construct_final_command(self):
         # for linux
