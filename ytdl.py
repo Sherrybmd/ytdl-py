@@ -2,6 +2,9 @@ import time
 import os
 
 
+# make sure self.extras is empty for each download
+# (or reset it before each download) so flags don't accumulate across runs.
+#
 # add installation and adding of FFMPEG in path,
 # test on windows with none of the above installed,
 # if chrome is being used, avoid extracting cookies
