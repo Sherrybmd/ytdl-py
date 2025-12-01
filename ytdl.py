@@ -20,7 +20,7 @@ class linuxytdl:
         self.folder = "ytdl-downloads"
 
         self.linuxTerminal = "gnome-terminal -- bash -c '"
-        self.linuxTerminalJank = ";exec bash'"
+        self.linuxTerminalJank = "'"
         self.browserName = browsername
         self.link = ""
 
