@@ -60,7 +60,7 @@ class linuxytdl:
         self.downVideo(quality, name)
 
     def downAudio(self, name):
-        self.extras += "-f bestaudio --extract-audio --audio-quality 320k --recode mp3"
+        self.extras += "yt-dlp -x --audio-format mp3 "
         self.getOutputName(name, "")
         self.download()
 
